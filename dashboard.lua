@@ -19,7 +19,7 @@ local parse = function(datasets, opts)
         for l in lines do
             local c = 1
             
-            for v in string.gmatch(l, '([^,]+)') do                
+            for v in string.gmatch(l .. ',', '([^,]*),') do
                 local g = cols[c] or ('' .. c)
                 local m = dataset.name
                 
