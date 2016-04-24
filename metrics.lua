@@ -69,11 +69,14 @@ function metrics.Log.commit(self)
         self.row[i] = m
     end
     
-    self.file:write(table.concat(self.row, ',') .. "\n")
+    local line = table.concat(self.row, ',')
+    self.file:write(line .. "\n")
     self.file:flush()
     
     self.c = self.c + 1
     self.row = {}    
+    
+    return line
 end
 
 function metrics.Log.close(self)

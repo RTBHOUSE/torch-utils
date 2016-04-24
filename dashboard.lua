@@ -15,7 +15,7 @@ local parse = function(datasets, opts)
             table.insert(cols, col)
         end
         
-        local n = 1
+        local n = 1 + (dataset.shift or 0)
         for l in lines do
             local c = 1
             
