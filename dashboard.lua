@@ -84,7 +84,7 @@ local plot = function(group, opts)
         'red', 'green', 'blue', 'purple', 'yellow', 'teal', 
         'maroon', 'lime', 'navy', 'fuchsia', 'olive', 'aqua'}
     
-    local c = 1
+    local c = 0
    
     for k, v in ipairs(group.list) do
         if #v.x > 0 and (not opts.metrics or v.name:match(opts.metrics)) then
