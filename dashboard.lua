@@ -62,13 +62,27 @@ local parse = function(datasets, opts)
                 
                 c = c + 1
             end
-            
             n = n + 1
         end
     end
     
+    local max = 0
     for k, v in ipairs(list) do
         v.idx = nil
+        if opts.cut and opts.cut > 0 then
+            for k2,v2 in ipairs(v.list) do
+                if max < #v2.x then
+                    max = #v2.x
+                end
+                for i=1,opts.cut do
+                    table.remove(v2.x)
+                    table.remove(v2.y)
+                end
+            end
+        end
+    end
+    if opts.cut and max <= opts.cut then
+        print("Change cut parameter to not remove all data (should be not greater than " .. max - 2 .. ")!")
     end
     
     return list
