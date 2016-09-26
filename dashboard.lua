@@ -66,6 +66,18 @@ local parse = function(datasets, opts)
         end
     end
     
+    for k, v in ipairs(list) do
+        if opts.movingAverage and opts.movingAverage > 1 then
+            for k2,v2 in ipairs(v.list) do
+                local y = {v2.y[1]}
+                for i=2,#v2.y do
+                    table.insert(y, y[#y] + (v2.y[i] - v2.y[math.max(i - opts.movingAverage, 1)])/opts.movingAverage)
+                end
+                v2.y = y
+            end
+        end
+    end
+    
     local max = 0
     for k, v in ipairs(list) do
         v.idx = nil
