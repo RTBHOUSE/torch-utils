@@ -46,7 +46,7 @@ end
 
 function metrics.Log.mean(self, k, v, w)
     local m = getOrInit(self, k, 'mean')
-    m.v = (m.v or 0) + v
+    m.v = (m.v or 0) + v * (w or 1)
     m.c = (m.c or 0) + (w or 1)
 end
 
