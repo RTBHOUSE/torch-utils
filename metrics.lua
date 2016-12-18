@@ -44,10 +44,10 @@ function metrics.Log.sum(self, k, v)
     m.v = (m.v or 0) + v
 end
 
-function metrics.Log.mean(self, k, v)
+function metrics.Log.mean(self, k, v, w)
     local m = getOrInit(self, k, 'mean')
     m.v = (m.v or 0) + v
-    m.c = (m.c or 0) + 1
+    m.c = (m.c or 0) + (w or 1)
 end
 
 function metrics.Log.commit(self)
